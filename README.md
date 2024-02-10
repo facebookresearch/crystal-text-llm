@@ -1,7 +1,7 @@
 # Fine-Tuned Language Models Generate Stable Inorganic Materials as Text
 
 This repository contains the code for the paper
-[_Fine-Tuned Language Models Generate Stable Inorganic Materials as Text_](https://openreview.net/forum?id=0r5DE2ZSwJ)
+[_Fine-Tuned Language Models Generate Stable Inorganic Materials as Text_](https://arxiv.org/abs/2402.04379)
 by Nate Gruver, Anuroop Sriram, Andrea Madotto, Andrew Gordon Wilson, C. Lawrence Zitnick, and Zachary Ward Ulissi (ICLR 2024).
 
 <figure>

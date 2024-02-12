@@ -12,7 +12,11 @@ import pandas as pd
 import numpy as np
 from pymatgen.core import Element
 from pymatgen.core.structure import Structure
-from m3gnet.models import Relaxer
+#from m3gnet.models import Relaxer
+import matgl
+from matgl.ext.ase import Relaxer
+
+pot = matgl.load_model("M3GNet-MP-2021.2.8-PES")
 
 def find_similar_elements(target_element, elements, tolerance=0.1):
     similar_elements = []
@@ -47,7 +51,7 @@ def propose_new_structures(cif_str, swap_table, max_swaps=1):
     num_possible_swaps = sum([len(swap_table[el]) for el in swappable_elements])
     num_swaps = min(num_possible_swaps, max_swaps)
 
-    relaxer = Relaxer() 
+    relaxer = Relaxer(potential=pot) 
     new_bulks = []
     for _ in range(num_swaps):
         old_el = random.choice(swappable_elements)

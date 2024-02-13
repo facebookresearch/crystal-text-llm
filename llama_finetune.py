@@ -251,6 +251,8 @@ def setup_training_args(args):
     output_dir= args.expdir / args.run_name
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    if args.debug:
+        os.environ["WANDB_DISABLED"] = "True"
     os.environ["ACCELERATE_MIXED_PRECISION"] = "no"
     training_args = TrainingArguments(
         fsdp=False,
@@ -333,6 +335,7 @@ def setup_model(args, rank):
         bias="none",
         task_type="CAUSAL_LM",
     )
+
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
 
@@ -409,6 +412,7 @@ if __name__ == "__main__":
     parser.add_argument("--format-permute-structure", action="store_true", default=False)
     parser.add_argument("--w-attributes", type=int, default=1)
     parser.add_argument("--resume-dir", type=Path, default=None)
+    parser.add_argument("--debug", action="store_true", default=False)
     args = parser.parse_args()
 
     main(args)

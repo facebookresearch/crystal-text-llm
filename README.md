@@ -10,7 +10,7 @@ by Nate Gruver, Anuroop Sriram, Andrea Madotto, Andrew Gordon Wilson, C. Lawrenc
 </figure>
 
 \
-⚠️ Our CrystalLLM method resembles but is not the same as CrystaLLM (https://arxiv.org/abs/2307.04340), which explores training language models from scratch on CIF-formatted crystals. You can find the code associated with that project at the following link: https://github.com/lantunes/CrystaLLM. ⚠️
+⚠️ Our method resembles but is not the same as CrystaLLM (https://arxiv.org/abs/2307.04340), which explores training language models from scratch on CIF-formatted crystals. You can find the code associated with that project at the following link: https://github.com/lantunes/CrystaLLM. ⚠️
 
 ## 🛠 Installation
 Run the following command to install all dependencies. 

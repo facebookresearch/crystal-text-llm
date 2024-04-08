@@ -10,6 +10,6 @@ conda activate crystal-llm
 
 pip install torch torchvision torchaudio
 pip install accelerate peft transformers sentencepiece datasets
-pip install bitsandbytes
+pip install bitsandbytes pymatgen
 
 conda deactivate

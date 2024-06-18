@@ -72,11 +72,7 @@ def label_energies(filename):
     new_df = pd.DataFrame(new_df)
     new_filename = filename.replace(".csv","") + "_m3gnet_relaxed_energy.csv"
     new_df.to_csv(new_filename)
-
-
-
-
-
+    return new_df
 
 def generate_CSE(structure, m3gnet_energy):
     # Write VASP inputs files as if we were going to do a standard MP run
@@ -116,11 +112,9 @@ def generate_CSE(structure, m3gnet_energy):
     # Return the final CSE (notice that the composition/etc is also clean, not things like Fe3+)!
     return cse
 
-def get_e_above_hull(fn):
-    data_path = f"/private/home/ngruver/ocp-modeling-dev/llm/2023-07-13-mp-computed-structure-entries.json.gz"
-
-    print(f"Loading MP ComputedStructureEntries from {data_path}")
-    df = pd.read_json(data_path)
+def get_e_above_hull(structures_fn, entries_fn):
+    print(f"Loading MP ComputedStructureEntries from {entries_fn}")
+    df = pd.read_json(entries_fn)
 
     #filter to only df entries that contain the substring "GGA" in the column 'index'
     df = df[df['index'].str.contains("GGA")]
@@ -154,7 +148,8 @@ def get_e_above_hull(fn):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--filename", type=str, default="data/llm/relaxations/relaxations.csv")
+    parser.add_argument("--structures_fn", type=str, default="data/llm/relaxations/relaxations.csv")
+    parser.add_argument("--entries_fn", type=str, default="/private/home/ngruver/ocp-modeling-dev/llm/2023-07-13-mp-computed-structure-entries.json.gz")
     args = parser.parse_args()
 
     #suppress tensorflow warnings
@@ -163,10 +158,7 @@ if __name__ == "__main__":
     import tensorflow as tf
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-    label_energies(args.filename)
-
-
-
+    new_fn = label_energies(args.structures_fn, args.entries_fn)
 
     warnings.filterwarnings("ignore")
-    get_e_above_hull("")
+    get_e_above_hull(new_fn)

@@ -34,6 +34,16 @@ and sample from a PEFT model with
 python llama_sample.py --model_name 7b --model_path=exp/7b-test-run/checkpoint-500 --out_path=llm_samples.csv
 ```
 
+## E above hull evaluation
+
+To construct the convex hull, you must download structure entries from the following link:
+https://figshare.com/articles/dataset/Matbench_Discovery_v1_0_0/22715158
+
+Then energy values can be computed with
+```
+python e_above_hull.py --structures_fn [CSV FILE WITH STRUCTURES] --entries_fn [PATH TO STRUCTURE ENTRIES .json.gz FILE]
+```
+
 ## License
 
 The majority of crystall-llm is licensed under CC-BY-NC, however portions of the project are available under separate license terms: https://github.com/materialsproject/pymatgen is licensed under the MIT license, https://github.com/huggingface/transformers is licensed under Apache 2.0, and https://gitlab.com/ase/ase/-/ is licensed under GNU Lesser General License
